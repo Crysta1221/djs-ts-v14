@@ -1,17 +1,10 @@
-import { SlashCommandBuilder, CommandInteraction } from "discord.js";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
-interface Command {
-  data: SlashCommandBuilder;
-  execute(interaction: CommandInteraction): void;
-}
-
-const command: Command = {
+module.exports = {
   data: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Pongを返します"),
-  async execute(interaction) {
+    .setDescription("Replies with Pong!"),
+  async execute(interaction: CommandInteraction) {
     await interaction.reply("Pong!");
   },
 };
-
-export default command;

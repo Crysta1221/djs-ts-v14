@@ -10,17 +10,20 @@ import * as path from "path";
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import { load } from "js-yaml";
 import config_type from "./types/config_type";
+import Command_type from "./types/command";
 
-const config = load(fs.readFileSync("./config.yml", "utf8")) as config_type;
+const config = load(
+  fs.readFileSync("./config_main.yml", "utf8")
+) as config_type;
 
-const client = new Client({
+const client: Command_type = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
   ],
-});
+}) as Command_type;
 
 client.on("ready", () => {
   console.log(`${client.user.tag}でログインしました。`);
@@ -28,7 +31,7 @@ client.on("ready", () => {
 
 client.login(config.Discord_API.token);
 
-client.commands = new Collection();
+client.commands = new Collection<string, Command_type>();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs

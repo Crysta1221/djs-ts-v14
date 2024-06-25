@@ -1,17 +1,20 @@
 import { REST, Routes } from "discord.js";
 import * as fs from "fs";
+import * as path from "path";
 import { load } from "js-yaml";
 import config_type from "./types/config_type";
 
-const config = load(fs.readFileSync("./config.yml", "utf8")) as config_type;
+const config = load(
+  fs.readFileSync("./config_main.yml", "utf8")
+) as config_type;
 
 const commands = [];
 const commandFiles = fs
   .readdirSync("src/commands")
-  .filter((file) => file.endsWith(".ts") || file.endsWith(".js"));
+  .filter((file) => file.endsWith(".ts"));
 
 for (const file of commandFiles) {
-  const command = require(`src/commands/${file}`);
+  const command = require(`./commands/${file}`);
   commands.push(command.data.toJSON());
 }
 
