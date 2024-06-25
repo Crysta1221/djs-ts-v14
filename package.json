@@ -1,0 +1,26 @@
+{
+  "name": "djs-ts",
+  "version": "1.0.0",
+  "description": "djs-ts-example",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node build/index.js",
+    "dev": "ts-node src/index.ts",
+    "deploy": "ts-node src/deploy.ts"
+  },
+  "author": "Crysta1221",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.14.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "js-yaml": "^4.1.0",
+    "picocolors": "^1.0.1",
+    "sqlite3": "^5.1.7"
+  }
+}
